@@ -1,0 +1,4 @@
+{
+  "title": "LAN access",
+  "description": "Expose the dsh Web GUI to the LAN: bind 0.0.0.0, skip the token handshake, and let the browser treat the LAN origin as a local page."
+}

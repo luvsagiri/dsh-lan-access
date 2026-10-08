@@ -1,0 +1,71 @@
+{
+  "name": "dsh-lan-access",
+  "version": "1.0.0",
+  "description": "局域网使用：让 dsh Web GUI 绑到 0.0.0.0、免 token 直连，并让浏览器端把该地址当本机页面处理（设置/模型提供商页可用）。",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "icon.svg",
+    "locale/zh.json",
+    "locale/en.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "icon": "./icon.svg",
+  "meta": {
+    "title": "局域网使用",
+    "description": "把 dsh Web GUI 暴露到局域网：绑定 0.0.0.0、免 token 直连、浏览器端按本机页面处理。"
+  },
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "lan",
+    "local-network",
+    "局域网",
+    "0.0.0.0",
+    "no-auth"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luvsagiri/dsh-lan-access.git"
+  },
+  "homepage": "https://github.com/luvsagiri/dsh-lan-access#readme",
+  "bugs": {
+    "url": "https://github.com/luvsagiri/dsh-lan-access/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dshTarget": "0.2.0-rc.2",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-connection",
+        "@deepseek-ai/dsh-api-gateway",
+        "@deepseek-ai/dsh-client-ui-slots"
+      ]
+    },
+    "install": {
+      "preferred": "tarball",
+      "tarball": "https://github.com/luvsagiri/dsh-lan-access/archive/refs/heads/main.tar.gz",
+      "zip": "https://github.com/luvsagiri/dsh-lan-access/archive/refs/heads/main.zip",
+      "git": "https://github.com/luvsagiri/dsh-lan-access.git"
+    }
+  }
+}

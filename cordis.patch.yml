@@ -1,0 +1,21 @@
+# dsh-lan-access — bundle patch
+#
+# 这一层在 dsh-base、dsh-web-app 之后应用（bundle 按 package.json 里
+# dsh.profile.bundles 的顺序叠加，本插件由 `dsh plugin add` 追加到末尾）。
+#
+# 这里**刻意不覆盖官方的 `webserver` 行**：
+# 覆盖是「整段替换 config」，就得把官方的 port / compression / compressionLevel /
+# compressionThresholdBytes 一起重述，官方一改键就崩；而且那样端口会被写死。
+#
+# 绑定地址与端口改由本插件在运行时「重绑」同一个 http server 完成：
+#   - 默认 host = 0.0.0.0（局域网可达），默认端口不动（沿用 `--port` 或官方默认值）
+#   - 端口与认证开关都在 Settings → 局域网使用 页面里改，保存即生效
+# 详情见 index.js。
+
+- insert:
+    - id: lan-access
+      name: dsh-lan-access
+      config:
+        # 设置接口的挂载前缀（浏览器半边与此保持一致）。
+        route: /lan-access
+        verbose: true
